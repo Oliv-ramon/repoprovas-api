@@ -13,6 +13,7 @@ export async function register({ email, password }: userRepository.CreateUserDat
 
 async function validateUserExistence(email: string) {
   const user = await userRepository.findByEmail(email);
+  
   if (user) throw errorUtils.conflictError("this user already exist");
 
   return user;

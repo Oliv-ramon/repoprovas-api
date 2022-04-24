@@ -1,14 +1,14 @@
 import { Router } from "express";
 
-import * as authController from "../controllers/authControler.js"
+import * as userController from "../controllers/userControler.js"
 import { schemaValidationMiddleware } from "../middlewares/index.js";
 import { registerSchema } from "../schemas/index.js";
 
-const authRouter = Router();
-authRouter.post(
-  "/auth/register", 
+const userRouter = Router();
+userRouter.post(
+  "/users", 
   schemaValidationMiddleware(registerSchema), 
-  authController.register
+  userController.register
 );
 
-export default authRouter;
+export default userRouter;
