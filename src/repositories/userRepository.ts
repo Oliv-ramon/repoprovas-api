@@ -3,7 +3,7 @@ import prisma from "../database.js";
 
 export type CreateUserData = Omit<User, "id">
 
-export async function findByEmail(email: string) {
+async function findByEmail(email: string) {
   return prisma.user.findUnique({
     where: {
       email
@@ -11,8 +11,15 @@ export async function findByEmail(email: string) {
   });
 }
 
-export async function insert(createUserData: CreateUserData) {
+async function insert(createUserData: CreateUserData) {
   await prisma.user.create({
     data: createUserData
   });
 }
+
+const userRepository = {
+  findByEmail,
+  insert
+};
+
+export default userRepository;
