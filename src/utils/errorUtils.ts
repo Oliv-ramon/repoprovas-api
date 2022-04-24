@@ -14,12 +14,17 @@ export function unauthorizedError(message: string) {
   return { type: "unauthorized", message };
 }
 
+export function conflictError(message: string) {
+  return { type: "conflict", message };
+}
+
 export function typeToStatusCode(type: string) {
   const errorTypesToStatusCode = {
     badRequest: 400,
     notFound: 404,
     unprocessableEntity: 422,
     unauthorized: 401,
+    conflict: 409,
   };
 
   return errorTypesToStatusCode[type];

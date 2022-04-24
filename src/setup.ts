@@ -1,4 +1,3 @@
 import dotenv from "dotenv";
-import "express-async-error";
-
+import "express-async-errors";
 dotenv.config();

@@ -13,6 +13,7 @@ export default function errorHandlerMiddleware(
 
     return res.status(statusCode).send(error.message);
   }
+  console.log(error)
 
-  res.sendStatus(500);
+  return res.sendStatus(500);
 } 

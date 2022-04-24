@@ -1,9 +1,9 @@
 import express, { json } from "express";
 import cors from "cors";
-import router from "./routes/index.js";
 
-import "./setup.js"
+import "./setup.js";
 import { errorHandlerMiddleware } from "./middlewares/index.js";
+import router from "./routes/index.js";
 
 const app = express();
 app.use(json());
