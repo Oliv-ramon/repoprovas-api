@@ -14,3 +14,60 @@ model User {
 
   @@map("users")
 }
+
+model Discipline {
+  id                Int                 @id @default(autoincrement())
+  name              String              @unique
+  term              Term                @relation(fields: [termId], references: [id])
+  termId            Int
+  teacherDisciplines TeacherDiscipline[]
+
+  @@map("disciplines")
+}
+
+model Term {
+  id          Int          @id @default(autoincrement())
+  number      String       @unique
+  disciplines Discipline[]
+
+  @@map("terms")
+}
+
+model TeacherDiscipline {
+  id           Int        @id @default(autoincrement())
+  teacher      Teacher    @relation(fields: [teacherId], references: [id])
+  teacherId    Int
+  discipline   Discipline @relation(fields: [disciplineId], references: [id])
+  disciplineId Int
+
+  @@map("teacherDisciplines")
+  Test Test[]
+}
+
+model Teacher {
+  id                Int                 @id @default(autoincrement())
+  name              String
+  teacherDisciplines TeacherDiscipline[]
+
+  @@map("teachers")
+}
+
+model Test {
+  id                  Int               @id @default(autoincrement())
+  name                String
+  pdfUrl              String
+  categoryId          Int
+  category            Category          @relation(fields: [categoryId], references: [id])
+  teacherDisciplineId Int
+  teacherDiscipline   TeacherDiscipline @relation(fields: [teacherDisciplineId], references: [id])
+
+  @@map("tests")
+}
+
+model Category {
+  id    Int    @id @default(autoincrement())
+  name  String
+  tests Test[]
+
+  @@map("categories")
+}
